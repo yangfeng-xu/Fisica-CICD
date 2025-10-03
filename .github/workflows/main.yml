@@ -4,6 +4,8 @@ on:
   push:
     branches: 
     - main
+    tags:
+        -'v*.*.*'
 
 jobs:
   build:
@@ -33,6 +35,21 @@ jobs:
         with:
           name: PhysicsGame
           path: artifact\PhysicsGame
+
+    release:
+      needs: build
+      runs-on: ubuntu-latest
+
+      steps:
+        - uses: actions/checkout@v3
+        - name: create a release
+          uses: elgohr/Github-release-action@v5
+
+        - name: download a build artifact
+          uses: actions/download-artifact@v4
+
+        - name: Github releases
+          uses: fnkr/github-action-ghr@v1.3
 
         
        
