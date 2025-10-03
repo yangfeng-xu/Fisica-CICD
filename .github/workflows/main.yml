@@ -25,5 +25,11 @@ jobs:
       - name: Dir
         run: dir
 
+      - name: copy the executable to the artifact directory
+        run: copy build files into artifact/PhysicsGame/
+
+      - name: upload artifact
+        uses: actions/upload-artifact@v4
+
         
        
